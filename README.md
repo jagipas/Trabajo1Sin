@@ -19,4 +19,5 @@ por las carreteras. Un camión para moverse necesita un conductor que lo conduzc
 1) El Driver1 (D1) debe finalizar en la ciudad C1
 2) El Truck1 (T1) debe finalizar en la ciudad C1
 3) El Package1 (P1) hay que transportarlo a la ciudad C1 y el Package 2 (P2) hay que transportarlo a C2
+https://github.com/jagipas/Trabajo1Sin/blob/master/Captura%20de%20pantalla%20de%202016-04-25%2012:01:16.png
 
