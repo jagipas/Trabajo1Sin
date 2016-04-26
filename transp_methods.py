@@ -4,11 +4,18 @@ def walk_to_dest_m(state,driver,dest):
 	#Localizacion del conductor
 	driverAt = state.at_cond[driver]
 	#Buscar localizacion
-	for i in state.ruta_cond:
-		if state.ruta_cond[i]==dest:
-			pos = i
-			break
-		else if 
+	pos = -1
+	
+	if len(state.ruta_cond[driverAt])==1:
+			pos = state.ruta_cond[0]
+			
+	else:
+		for i in state.ruta_cond:
+			if state.ruta_cond[i]==dest:
+				pos = i
+				break
+
+	if pos == -1:
 	#Camion que se encuentra el distribuidor donde esta el contenedor
 	for i in state.at_camiones:
 		if state.at_camiones[i]==pos:

@@ -1,9 +1,9 @@
 import pyhop
 
 
-def drive(state,camion,y):
-	print "Entro en drive"
-	state.at_camiones[camion]=y
+def walk(state,driver,y):
+	print "Entro en walk"
+	state.at_cond[driver]=y
 	return state
     
 def lift(state,grua,cont):
