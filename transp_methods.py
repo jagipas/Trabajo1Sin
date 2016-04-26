@@ -1,6 +1,28 @@
 import pyhop
 
-def move_to_dest_m(state,cont,dest):
+def walk_to_dest_m(state,driver,dest):
+	#Localizacion del conductor
+	driverAt = state.at_cond[driver]
+	#Buscar localizacion
+	for i in state.ruta_cond:
+		if state.ruta_cond[i]==dest:
+			pos = i
+			break
+		else if 
+	#Camion que se encuentra el distribuidor donde esta el contenedor
+	for i in state.at_camiones:
+		if state.at_camiones[i]==pos:
+			camion = i
+			break
+	#Si el contenedor no esta en su distribuidor destino
+	if dest!=pos:
+		return [('cargar_cont', cont, pos, camion), ('drive', camion, dest),('descargar_cont',cont, dest, camion)]
+
+	else:
+		return False
+pyhop.declare_methods('move_to_dest', move_to_dest_m)
+
+def drive_to_dest_m(state,transport,dest):
 	#Palet en el que esta el contenedor a mover
 	palet = state.cont[cont]
 	#Distribuidor donde esta el palet que tiene el contenedor
