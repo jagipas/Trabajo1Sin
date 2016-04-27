@@ -31,7 +31,7 @@ pyhop.declare_methods('move_to_dest', move_to_dest_m)
 
 def drive_to_dest_m(state,transport,dest):
 	#Palet en el que esta el contenedor a mover
-	palet = state.cont[cont]
+	transpAt = state.at_camiones[transport]
 	#Distribuidor donde esta el palet que tiene el contenedor
 	for i in state.dist_palets:
 		if state.dist_palets[i]==palet:
