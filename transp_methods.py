@@ -32,89 +32,92 @@ def walk_to_dest_m(state,driver,dest):
 pyhop.declare_methods('walk_to_dest', walk_to_dest_m)
 
 def drive_to_dest_m(state,transport,dest):
-	#Palet en el que esta el contenedor a mover
+	#Localizacion del camion
 	transpAt = state.at_camiones[transport]
-	#Distribuidor donde esta el palet que tiene el contenedor
-	for i in state.dist_palets:
-		if state.dist_palets[i]==palet:
-			pos = i
-			break
-	#Camion que se encuentra el distribuidor donde esta el contenedor
-	for i in state.at_camiones:
-		if state.at_camiones[i]==pos:
-			camion = i
-			break
-	#Si el contenedor no esta en su distribuidor destino
-	if dest!=pos:
-		return [('drive', camion, dest)]
-
-	else:
+	
+	#Comprobamos si hay conductor en la posicion origen del camion y si hay lo guardamos
+	hayDriver=False	
+	for i in state.at_cond:
+		if state.at_cond[i]==transpAt:
+			hayDriver=True
+			driver=i
+	
+	#Si el camion ya esta en el destino devuelve False
+	if dest==transpAt:
 		return False
+
+	#Si hay un conductor se realizan las acciones necesarias para conducirlo y poner el estado de manera correcta
+	elif hayDriver:
+		return[('subir_camion',transport,driver),('drive',transport,dest),('bajar_camion',transport,driver)]
+	#Si no hay conductor se busca el mas cercano
+	else:
+		return[('find_nearest_driver',transport),('drive_to_dest',transport,dest)]
+
 pyhop.declare_methods('drive_to_dest', drive_to_dest_m)
 
 def pack_to_dest_m(state, paquete, dest):
-	transp=-1
-	for i in state.at_paquetes:	
-		if i == paquete:
-			ciudad = state.at_paquetes[i]
-			break
-	for j in state.at_camiones:
-		if state.at_camiones[j] == ciudad:
-			transp = j
-	#Si el contenedor que esta en el tope de la pila del camion no es el que queremos, desapilamos y cargamos el que haya
-	#condiciones para el if: len(state.carga_camion[camion])==0 
-	if transp==-1:
-		return [('driver_to_transp_to_dest', ciudad),('pack_to_dest',paquete,dest)]
-	elif state.at_camiones[transp]==ciudad and state.driver_atCamion[transp]=='':
-		return [('find_driver',grua,cont1),('pack_to_dest',grua,camion)]		
-	elif state.at_camiones[transp]==ciudad and state.driver_atCamion[transp]!='':
-		return [('carga',transp,paquete,ciudad),('drive_to_dest',transp,dest),('descarga',transp,paquete,dest)]
+	#Localizacion del camion
+	packetAt = state.at_paquete[paquete]
+	
+	#Comprobamos si hay conductor en la posicion origen del camion y si hay lo guardamos
+	hayCamion=False	
+	for i in state.at_camiones:
+		if state.at_camiones[i]==packetAt:
+			hayCamion=True
+			camion=i
+
+	#Si el camion ya esta en el destino devuelve False
+	if dest==packetAt:
+		return False
+
+	#Si hay un conductor se realizan las acciones necesarias para conducirlo y poner el estado de manera correcta
+	elif hayCamion:
+		return[('carga',camion,paquete),('drive_to_dest',camion,dest),('descarga',transport,driver)]
+	#Si no hay conductor se busca el mas cercano
+	else:
+		return[('find_nearest_transport',paquete),('pack_to_dest',paquete,dest)]
 		
 pyhop.declare_methods('pack_to_dest', pack_to_dest_m)
 
-def driver_to_transp_to_dest_m(state, cont, dist, camion):
-	for i in state.dist_gruas:	
-		if i == dist:
-			grua = state.dist_gruas[i]
-	palet=state.dist_palets[dist]
-	#Si el contenedor que esta en el tope de la pila del camion no es el que queremos, desapilamos y cargamos el que haya
-	if len(state.carga_camion[camion])>1 and state.carga_camion[camion][-1]!=cont:
-		cont1=state.carga_camion[camion].pop()
-		return [('unload',grua,cont1),('drop',palet,grua),('descargar_cont',cont,dist,camion)]
-	else:
-		cont1=state.carga_camion[camion].pop()
-		return [('unload',grua,cont1),('drop',palet,grua)]
+def find_nearest_driver_m(state, transport):
 
-pyhop.declare_methods('driver_to_transp_to_dest', driver_to_transp_to_dest_m)
+	#Ciudad donde se encuentra el camion a conducir	
+	transportAt=state.at_camiones[transport]
 
-def find_driver_m(state, ciudad):
-	sitios_analizados=[]
-	for i in state.ruta_cond:
-		for j in state.at_cond:
-			if state.at_cond[j]==state.ruta_cond[i] and not i in sitios_analizados:
-				cond=j
-				break
-			else:
-				sitios_analizados.append(i)
-	return [('walk_to_dest',cond,ciudad)]
+	#Variables auxiliares
+	minValue=100
+	indexMinDest=''
+	
+	#Buscamos en la lista de localizaciones de conductores y seleccionamos el conductor mas cercano a la posicion del camion
+	for i in state.at_cond:
+		if state.distancias[state.at_cond[i]][transportAt]<minValue:
+			minValue=state.distancias[state.at_cond[i]][transportAt]
+			indexMinDest = i
+	#El conductor va andando hacia el camion
+	return [('walk_to_dest',indexMinDest,transportAt)]
 	
 
-pyhop.declare_methods('find_driver', find_driver_m)
+pyhop.declare_methods('find_nearest_driver', find_nearest_driver_m)
 
-def find_transport_m(state, ciudad):
-	sitios_analizados=[]
-	for i in state.ruta_camion:
-		for j in state.at_camion:
-			if state.at_camion[j]==state.ruta_camion[i] and not i in sitios_analizados:
-				camion=j
-				break
-			else:
-				sitios_analizados.append(i)
-	ciudad=state.at_camiones[camion]
-	return [('walk_to_dest',cond,ciudad)]
+def find_nearest_transport_m(state, packet):
+
+	#Ciudad donde se encuentra el paquete a llevar	
+	packetAt=state.at_paquetes[packet]
+
+	#Variables auxiliares
+	minValue=100
+	indexMinDest=''
+	
+	#Buscamos en la lista de localizaciones de camiones y seleccionamos el camion mas cercano a la posicion del paquete
+	for i in state.at_camiones:
+		if state.distancias[state.at_camiones[i]][packetAt]<minValue:
+			minValue=state.distancias[state.at_camiones[i]][packetAt]
+			indexMinDest = i
+	#El conductor va andando hacia el camion
+	return [('drive_to_dest',indexMinDest,packetAt)]
 	
 
-pyhop.declare_methods('find_driver', find_driver_m)
+pyhop.declare_methods('find_nearest_transport', find_nearest_transport_m)
 
 
 

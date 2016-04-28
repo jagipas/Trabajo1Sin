@@ -10,27 +10,28 @@ def walk(state,driver,y):
 	else: 
 		return False
     
-def drive(state,transp,x,y):
+def drive(state,transp,y):
 	print "Entro en lift"
-	if y in state.ruta_camion[state.at_camion[transp]]:
+	if y in state.ruta_cam[state.at_camiones[transp]]:
 		state.at_camiones[transp]=y
-		state.at_cond[state.at_cond[transp]]=y
 		return state
 	else:
 		return False
 		
 
-def descarga(state,transp,paquete,ciudad):
+def descarga(state,transp,paquete):
 	print "Entro en descarga"
-	if state.at_camiones[transp]==ciudad:
+	ciudad=state.at_camiones[transp]
+	if state.at_paquetes[paquete]==transp:
 		state.at_paquete[paquete]=ciudad
 		state.carga_camiones.remove(paquete)
 		return state
 	else:
 		return False
 
-def carga(state,transp,paquete,ciudad):
+def carga(state,transp,paquete):
 	print "Entro en carga"
+	ciudad=state.at_paquete[paquete]
 	if state.at_camiones[transp]==ciudad:
 		state.at_paquete[paquete]=transp
 		state.carga_camion[transp].append(paquete)
@@ -49,7 +50,7 @@ def subir_camion(state,transp,driver):
 def bajar_camion(state,transp,driver):
 	print "Entro en descarga"
 	ciudad = state.at_camiones[transp]
-	if state.at_camiones[transp]==state.at_cond[driver]:
+	if state.at_cond[driver]==transp:
 		state.at_cond[driver]=ciudad
 		return state
 	else:
