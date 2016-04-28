@@ -3,30 +3,31 @@ import pyhop
 def walk_to_dest_m(state,driver,dest):
 	#Localizacion del conductor
 	driverAt = state.at_cond[driver]
-	#Buscar localizacion
-	pos = -1
-	
-	if len(state.ruta_cond[driverAt])==1 and dest!=driverAt:
-			return [('walk',state, state.ruta_cond[0])]
-			
 
-	
-	else:
-		for i in state.ruta_cond:
-			if state.ruta_cond[i]==dest:
-				pos = i
-				return [(('walk',state, state.ruta_cond[0]),]
-				break
+	#Si el destino es accesible desde la posicion acutal de driver
 
-	if pos == -1:
-	#Camion que se encuentra el distribuidor donde esta el contenedor
-	
-	#Si el contenedor no esta en su distribuidor destino
-	if dest!=driverAt:
-		return [('walk', driver, dest), ('drive', camion, dest),('descargar_cont',cont, dest, camion)]
-
-	else:
+	if dest==driverAt:
 		return False
+
+	elif dest in state.ruta_cond[driverAt]:	
+		return [('walk',driver, dest)]
+				
+	#Si el driver solo tienen un posible trayecto desde su posicion actual
+	elif len(state.ruta_cond[driverAt])==1:
+		return [('walk',driver, state.ruta_cond[driverAt][0]),('walk_to_dest',driver,dest]
+	
+	#Si el conductor tiene varios destinos desde su posicion actual y ninguno de ellos es el destino final
+	else :
+		minValue=100
+		indexMinDest=-1
+		for i in state.ruta_cond[driverAt]:
+			if state.distancias[i][dest]<minValue:
+				minValue=state.distancias[i][dest]
+				indexMinDest = i
+
+		return [('walk',state, state.ruta_cond[driverAt][indexMinDest),('walk_to_dest',driver,dest)]
+				
+
 pyhop.declare_methods('walk_to_dest', walk_to_dest_m)
 
 def drive_to_dest_m(state,transport,dest):
