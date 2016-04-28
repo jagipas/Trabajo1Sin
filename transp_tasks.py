@@ -2,6 +2,8 @@ import pyhop
 
 def walk(state,driver,y):
 	print "Entro en walk"
+	print driver
+	print state.at_cond[driver]
 	if y in state.ruta_cond[state.at_cond[driver]]:
 		state.at_cond[driver]=y
 		return state
@@ -53,6 +55,6 @@ def bajar_camion(state,transp,driver):
 	else:
 		return False
 	
-pyhop.declare_operators(walk,drive,carga,descarga,subier_camion,bajar_camion)
+pyhop.declare_operators(walk,drive,carga,descarga,subir_camion,bajar_camion)
 
     

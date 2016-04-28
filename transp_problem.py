@@ -1,6 +1,6 @@
 import pyhop
-import distr_methods
-import distr_tasks
+import transp_methods
+import transp_tasks
 
 state1=pyhop.State('state1')
 
@@ -21,7 +21,7 @@ state1.distancias={'c0':{'pi_01':1,'c1':2,'pi_12':3,'c2':4},
                    'c2':{'c0':4,'pi_01':3,'c1':2,'pi_12':1}} 
 
 #GOAL
-#pyhop.pyhop(state1, [('walk_to_dest','d1','c1')], verbose=3)
+pyhop.pyhop(state1, [('walk_to_dest','d1','c2')], verbose=3)
 #pyhop.pyhop(state1, [('drive_to_dest','t1','c1')], verbose=3)
 #pyhop.pyhop(state1, [('pack_to_dest','p1','c1')], verbose=3)
 #pyhop.pyhop(state1, [('pack_to_dest','p2','c2')], verbose=3)
