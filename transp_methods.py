@@ -4,10 +4,8 @@ def walk_to_dest_m(state,driver,dest):
 	#Localizacion del conductor
 	driverAt = state.at_cond[driver]
 
-	#Si el destino es accesible desde la posicion acutal de driver
-
 	if dest==driverAt:
-		return False
+		return [('already_there',)]
 
 	elif dest in state.ruta_cond[driverAt]:	
 		return [('walk',driver, dest)]
@@ -17,7 +15,7 @@ def walk_to_dest_m(state,driver,dest):
 		return [('walk',driver, state.ruta_cond[driverAt][0]),('walk_to_dest',driver,dest)]
 	
 	#Si el conductor tiene varios destinos desde su posicion actual y ninguno de ellos es el destino final
-	else :
+	else:
 		minValue=100
 		indexMinDest=''
 		for i in state.ruta_cond[driverAt]:
@@ -42,10 +40,9 @@ def drive_to_dest_m(state,transport,dest):
 			hayDriver=True
 			driver=i
 	
-	#Si el camion ya esta en el destino devuelve False
 	if dest==transpAt:
-		return False
-
+		return [('already_there',)]	
+	
 	#Si hay un conductor se realizan las acciones necesarias para conducirlo y poner el estado de manera correcta
 	elif hayDriver:
 		return[('subir_camion',transport,driver),('drive',transport,dest),('bajar_camion',transport,driver)]
@@ -68,11 +65,11 @@ def pack_to_dest_m(state, paquete, dest):
 
 	#Si el camion ya esta en el destino devuelve False
 	if dest==packetAt:
-		return False
+		return [('already_there',)]
 
 	#Si hay un conductor se realizan las acciones necesarias para conducirlo y poner el estado de manera correcta
-	elif hayCamion:
-		return[('carga',camion,paquete),('drive_to_dest',camion,dest),('descarga',transport,driver)]
+	elif hayCamion :
+		return[('carga',camion,paquete),('drive_to_dest',camion,dest),('descarga',camion,paquete)]
 	#Si no hay conductor se busca el mas cercano
 	else:
 		return[('find_nearest_transport',paquete),('pack_to_dest',paquete,dest)]
@@ -102,7 +99,7 @@ pyhop.declare_methods('find_nearest_driver', find_nearest_driver_m)
 def find_nearest_transport_m(state, packet):
 
 	#Ciudad donde se encuentra el paquete a llevar	
-	packetAt=state.at_paquetes[packet]
+	packetAt=state.at_paquete[packet]
 
 	#Variables auxiliares
 	minValue=100
