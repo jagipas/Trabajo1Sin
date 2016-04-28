@@ -1,0 +1,267 @@
+** pyhop, verbose=3: **
+   state = state1
+   tasks = [('pack_to_dest', 'p1', 'c2'), ('pack_to_dest', 'p2', 'c1'), ('drive_to_dest', 't2', 'c2'), ('drive_to_dest', 't1', 'c1'), ('walk_to_dest', 'd1', 'c1'), ('walk_to_dest', 'd2', 'c1')]
+depth 0 tasks [('pack_to_dest', 'p1', 'c2'), ('pack_to_dest', 'p2', 'c1'), ('drive_to_dest', 't2', 'c2'), ('drive_to_dest', 't1', 'c1'), ('walk_to_dest', 'd1', 'c1'), ('walk_to_dest', 'd2', 'c1')]
+depth 0 method instance ('pack_to_dest', 'p1', 'c2')
+depth 0 new tasks: [('carga', 't2', 'p1'), ('drive_to_dest', 't2', 'c2'), ('descarga', 't2', 'p1')]
+depth 1 tasks [('carga', 't2', 'p1'), ('drive_to_dest', 't2', 'c2'), ('descarga', 't2', 'p1'), ('pack_to_dest', 'p2', 'c1'), ('drive_to_dest', 't2', 'c2'), ('drive_to_dest', 't1', 'c1'), ('walk_to_dest', 'd1', 'c1'), ('walk_to_dest', 'd2', 'c1')]
+depth 1 action ('carga', 't2', 'p1')
+Entro en carga
+depth 1 new state:
+    state1.at_paquete = {'p2': 'c0', 'p1': 't2'}
+    state1.at_cond = {'d2': 'c1', 'd1': 'pi_01'}
+    state1.ruta_cond = {'pi_01': ['c0', 'c1'], 'pi_12': ['c1', 'c2'], 'c1': ['pi_01', 'pi_12'], 'c0': ['pi_01'], 'c2': ['pi_12']}
+    state1.carga_camion = {'t2': ['p1'], 't1': []}
+    state1.ruta_cam = {'c2': ['c0', 'c1'], 'c1': ['c0', 'c2'], 'c0': ['c1', 'c2']}
+    state1.distancias = {'pi_01': {'pi_12': 2, 'c2': 3, 'c1': 1, 'c0': 1}, 'pi_12': {'c2': 1, 'p_01': 2, 'c0': 3, 'c1': 1}, 'c1': {'pi_01': 1, 'pi_12': 1, 'c0': 2, 'c2': 2}, 'c0': {'pi_01': 1, 'pi_12': 3, 'c1': 2, 'c2': 4}, 'c2': {'pi_01': 3, 'pi_12': 1, 'c1': 2, 'c0': 4}}
+    state1.at_camiones = {'t2': 'c0', 't1': 'c1'}
+depth 2 tasks [('drive_to_dest', 't2', 'c2'), ('descarga', 't2', 'p1'), ('pack_to_dest', 'p2', 'c1'), ('drive_to_dest', 't2', 'c2'), ('drive_to_dest', 't1', 'c1'), ('walk_to_dest', 'd1', 'c1'), ('walk_to_dest', 'd2', 'c1')]
+depth 2 method instance ('drive_to_dest', 't2', 'c2')
+depth 2 new tasks: [('find_nearest_driver', 't2'), ('drive_to_dest', 't2', 'c2')]
+depth 3 tasks [('find_nearest_driver', 't2'), ('drive_to_dest', 't2', 'c2'), ('descarga', 't2', 'p1'), ('pack_to_dest', 'p2', 'c1'), ('drive_to_dest', 't2', 'c2'), ('drive_to_dest', 't1', 'c1'), ('walk_to_dest', 'd1', 'c1'), ('walk_to_dest', 'd2', 'c1')]
+depth 3 method instance ('find_nearest_driver', 't2')
+depth 3 new tasks: [('walk_to_dest', 'd1', 'c0')]
+depth 4 tasks [('walk_to_dest', 'd1', 'c0'), ('drive_to_dest', 't2', 'c2'), ('descarga', 't2', 'p1'), ('pack_to_dest', 'p2', 'c1'), ('drive_to_dest', 't2', 'c2'), ('drive_to_dest', 't1', 'c1'), ('walk_to_dest', 'd1', 'c1'), ('walk_to_dest', 'd2', 'c1')]
+depth 4 method instance ('walk_to_dest', 'd1', 'c0')
+depth 4 new tasks: [('walk', 'd1', 'c0')]
+depth 5 tasks [('walk', 'd1', 'c0'), ('drive_to_dest', 't2', 'c2'), ('descarga', 't2', 'p1'), ('pack_to_dest', 'p2', 'c1'), ('drive_to_dest', 't2', 'c2'), ('drive_to_dest', 't1', 'c1'), ('walk_to_dest', 'd1', 'c1'), ('walk_to_dest', 'd2', 'c1')]
+depth 5 action ('walk', 'd1', 'c0')
+Entro en walk
+d1
+pi_01
+depth 5 new state:
+    state1.at_paquete = {'p2': 'c0', 'p1': 't2'}
+    state1.at_cond = {'d2': 'c1', 'd1': 'c0'}
+    state1.ruta_cond = {'pi_01': ['c0', 'c1'], 'pi_12': ['c1', 'c2'], 'c1': ['pi_01', 'pi_12'], 'c0': ['pi_01'], 'c2': ['pi_12']}
+    state1.carga_camion = {'t2': ['p1'], 't1': []}
+    state1.ruta_cam = {'c2': ['c0', 'c1'], 'c1': ['c0', 'c2'], 'c0': ['c1', 'c2']}
+    state1.distancias = {'pi_01': {'pi_12': 2, 'c2': 3, 'c1': 1, 'c0': 1}, 'pi_12': {'c2': 1, 'p_01': 2, 'c0': 3, 'c1': 1}, 'c1': {'pi_01': 1, 'pi_12': 1, 'c0': 2, 'c2': 2}, 'c0': {'pi_01': 1, 'pi_12': 3, 'c1': 2, 'c2': 4}, 'c2': {'pi_01': 3, 'pi_12': 1, 'c1': 2, 'c0': 4}}
+    state1.at_camiones = {'t2': 'c0', 't1': 'c1'}
+depth 6 tasks [('drive_to_dest', 't2', 'c2'), ('descarga', 't2', 'p1'), ('pack_to_dest', 'p2', 'c1'), ('drive_to_dest', 't2', 'c2'), ('drive_to_dest', 't1', 'c1'), ('walk_to_dest', 'd1', 'c1'), ('walk_to_dest', 'd2', 'c1')]
+depth 6 method instance ('drive_to_dest', 't2', 'c2')
+depth 6 new tasks: [('subir_camion', 't2', 'd1'), ('drive', 't2', 'c2'), ('bajar_camion', 't2', 'd1')]
+depth 7 tasks [('subir_camion', 't2', 'd1'), ('drive', 't2', 'c2'), ('bajar_camion', 't2', 'd1'), ('descarga', 't2', 'p1'), ('pack_to_dest', 'p2', 'c1'), ('drive_to_dest', 't2', 'c2'), ('drive_to_dest', 't1', 'c1'), ('walk_to_dest', 'd1', 'c1'), ('walk_to_dest', 'd2', 'c1')]
+depth 7 action ('subir_camion', 't2', 'd1')
+Entro en subir_camion
+depth 7 new state:
+    state1.at_paquete = {'p2': 'c0', 'p1': 't2'}
+    state1.at_cond = {'d2': 'c1', 'd1': 't2'}
+    state1.ruta_cond = {'pi_01': ['c0', 'c1'], 'pi_12': ['c1', 'c2'], 'c1': ['pi_01', 'pi_12'], 'c0': ['pi_01'], 'c2': ['pi_12']}
+    state1.carga_camion = {'t2': ['p1'], 't1': []}
+    state1.ruta_cam = {'c2': ['c0', 'c1'], 'c1': ['c0', 'c2'], 'c0': ['c1', 'c2']}
+    state1.distancias = {'pi_01': {'pi_12': 2, 'c2': 3, 'c1': 1, 'c0': 1}, 'pi_12': {'c2': 1, 'p_01': 2, 'c0': 3, 'c1': 1}, 'c1': {'pi_01': 1, 'pi_12': 1, 'c0': 2, 'c2': 2}, 'c0': {'pi_01': 1, 'pi_12': 3, 'c1': 2, 'c2': 4}, 'c2': {'pi_01': 3, 'pi_12': 1, 'c1': 2, 'c0': 4}}
+    state1.at_camiones = {'t2': 'c0', 't1': 'c1'}
+depth 8 tasks [('drive', 't2', 'c2'), ('bajar_camion', 't2', 'd1'), ('descarga', 't2', 'p1'), ('pack_to_dest', 'p2', 'c1'), ('drive_to_dest', 't2', 'c2'), ('drive_to_dest', 't1', 'c1'), ('walk_to_dest', 'd1', 'c1'), ('walk_to_dest', 'd2', 'c1')]
+depth 8 action ('drive', 't2', 'c2')
+Entro en drive
+depth 8 new state:
+    state1.at_paquete = {'p2': 'c0', 'p1': 't2'}
+    state1.at_cond = {'d2': 'c1', 'd1': 't2'}
+    state1.ruta_cond = {'pi_01': ['c0', 'c1'], 'pi_12': ['c1', 'c2'], 'c1': ['pi_01', 'pi_12'], 'c0': ['pi_01'], 'c2': ['pi_12']}
+    state1.carga_camion = {'t2': ['p1'], 't1': []}
+    state1.ruta_cam = {'c2': ['c0', 'c1'], 'c1': ['c0', 'c2'], 'c0': ['c1', 'c2']}
+    state1.distancias = {'pi_01': {'pi_12': 2, 'c2': 3, 'c1': 1, 'c0': 1}, 'pi_12': {'c2': 1, 'p_01': 2, 'c0': 3, 'c1': 1}, 'c1': {'pi_01': 1, 'pi_12': 1, 'c0': 2, 'c2': 2}, 'c0': {'pi_01': 1, 'pi_12': 3, 'c1': 2, 'c2': 4}, 'c2': {'pi_01': 3, 'pi_12': 1, 'c1': 2, 'c0': 4}}
+    state1.at_camiones = {'t2': 'c2', 't1': 'c1'}
+depth 9 tasks [('bajar_camion', 't2', 'd1'), ('descarga', 't2', 'p1'), ('pack_to_dest', 'p2', 'c1'), ('drive_to_dest', 't2', 'c2'), ('drive_to_dest', 't1', 'c1'), ('walk_to_dest', 'd1', 'c1'), ('walk_to_dest', 'd2', 'c1')]
+depth 9 action ('bajar_camion', 't2', 'd1')
+Entro en bajar_camion
+depth 9 new state:
+    state1.at_paquete = {'p2': 'c0', 'p1': 't2'}
+    state1.at_cond = {'d2': 'c1', 'd1': 'c2'}
+    state1.ruta_cond = {'pi_01': ['c0', 'c1'], 'pi_12': ['c1', 'c2'], 'c1': ['pi_01', 'pi_12'], 'c0': ['pi_01'], 'c2': ['pi_12']}
+    state1.carga_camion = {'t2': ['p1'], 't1': []}
+    state1.ruta_cam = {'c2': ['c0', 'c1'], 'c1': ['c0', 'c2'], 'c0': ['c1', 'c2']}
+    state1.distancias = {'pi_01': {'pi_12': 2, 'c2': 3, 'c1': 1, 'c0': 1}, 'pi_12': {'c2': 1, 'p_01': 2, 'c0': 3, 'c1': 1}, 'c1': {'pi_01': 1, 'pi_12': 1, 'c0': 2, 'c2': 2}, 'c0': {'pi_01': 1, 'pi_12': 3, 'c1': 2, 'c2': 4}, 'c2': {'pi_01': 3, 'pi_12': 1, 'c1': 2, 'c0': 4}}
+    state1.at_camiones = {'t2': 'c2', 't1': 'c1'}
+depth 10 tasks [('descarga', 't2', 'p1'), ('pack_to_dest', 'p2', 'c1'), ('drive_to_dest', 't2', 'c2'), ('drive_to_dest', 't1', 'c1'), ('walk_to_dest', 'd1', 'c1'), ('walk_to_dest', 'd2', 'c1')]
+depth 10 action ('descarga', 't2', 'p1')
+Entro en descarga
+depth 10 new state:
+    state1.at_paquete = {'p2': 'c0', 'p1': 'c2'}
+    state1.at_cond = {'d2': 'c1', 'd1': 'c2'}
+    state1.ruta_cond = {'pi_01': ['c0', 'c1'], 'pi_12': ['c1', 'c2'], 'c1': ['pi_01', 'pi_12'], 'c0': ['pi_01'], 'c2': ['pi_12']}
+    state1.carga_camion = {'t2': [], 't1': []}
+    state1.ruta_cam = {'c2': ['c0', 'c1'], 'c1': ['c0', 'c2'], 'c0': ['c1', 'c2']}
+    state1.distancias = {'pi_01': {'pi_12': 2, 'c2': 3, 'c1': 1, 'c0': 1}, 'pi_12': {'c2': 1, 'p_01': 2, 'c0': 3, 'c1': 1}, 'c1': {'pi_01': 1, 'pi_12': 1, 'c0': 2, 'c2': 2}, 'c0': {'pi_01': 1, 'pi_12': 3, 'c1': 2, 'c2': 4}, 'c2': {'pi_01': 3, 'pi_12': 1, 'c1': 2, 'c0': 4}}
+    state1.at_camiones = {'t2': 'c2', 't1': 'c1'}
+depth 11 tasks [('pack_to_dest', 'p2', 'c1'), ('drive_to_dest', 't2', 'c2'), ('drive_to_dest', 't1', 'c1'), ('walk_to_dest', 'd1', 'c1'), ('walk_to_dest', 'd2', 'c1')]
+depth 11 method instance ('pack_to_dest', 'p2', 'c1')
+depth 11 new tasks: [('find_nearest_transport', 'p2'), ('pack_to_dest', 'p2', 'c1')]
+depth 12 tasks [('find_nearest_transport', 'p2'), ('pack_to_dest', 'p2', 'c1'), ('drive_to_dest', 't2', 'c2'), ('drive_to_dest', 't1', 'c1'), ('walk_to_dest', 'd1', 'c1'), ('walk_to_dest', 'd2', 'c1')]
+depth 12 method instance ('find_nearest_transport', 'p2')
+depth 12 new tasks: [('drive_to_dest', 't1', 'c0')]
+depth 13 tasks [('drive_to_dest', 't1', 'c0'), ('pack_to_dest', 'p2', 'c1'), ('drive_to_dest', 't2', 'c2'), ('drive_to_dest', 't1', 'c1'), ('walk_to_dest', 'd1', 'c1'), ('walk_to_dest', 'd2', 'c1')]
+depth 13 method instance ('drive_to_dest', 't1', 'c0')
+depth 13 new tasks: [('subir_camion', 't1', 'd2'), ('drive', 't1', 'c0'), ('bajar_camion', 't1', 'd2')]
+depth 14 tasks [('subir_camion', 't1', 'd2'), ('drive', 't1', 'c0'), ('bajar_camion', 't1', 'd2'), ('pack_to_dest', 'p2', 'c1'), ('drive_to_dest', 't2', 'c2'), ('drive_to_dest', 't1', 'c1'), ('walk_to_dest', 'd1', 'c1'), ('walk_to_dest', 'd2', 'c1')]
+depth 14 action ('subir_camion', 't1', 'd2')
+Entro en subir_camion
+depth 14 new state:
+    state1.at_paquete = {'p2': 'c0', 'p1': 'c2'}
+    state1.at_cond = {'d2': 't1', 'd1': 'c2'}
+    state1.ruta_cond = {'pi_01': ['c0', 'c1'], 'pi_12': ['c1', 'c2'], 'c1': ['pi_01', 'pi_12'], 'c0': ['pi_01'], 'c2': ['pi_12']}
+    state1.carga_camion = {'t2': [], 't1': []}
+    state1.ruta_cam = {'c2': ['c0', 'c1'], 'c1': ['c0', 'c2'], 'c0': ['c1', 'c2']}
+    state1.distancias = {'pi_01': {'pi_12': 2, 'c2': 3, 'c1': 1, 'c0': 1}, 'pi_12': {'c2': 1, 'p_01': 2, 'c0': 3, 'c1': 1}, 'c1': {'pi_01': 1, 'pi_12': 1, 'c0': 2, 'c2': 2}, 'c0': {'pi_01': 1, 'pi_12': 3, 'c1': 2, 'c2': 4}, 'c2': {'pi_01': 3, 'pi_12': 1, 'c1': 2, 'c0': 4}}
+    state1.at_camiones = {'t2': 'c2', 't1': 'c1'}
+depth 15 tasks [('drive', 't1', 'c0'), ('bajar_camion', 't1', 'd2'), ('pack_to_dest', 'p2', 'c1'), ('drive_to_dest', 't2', 'c2'), ('drive_to_dest', 't1', 'c1'), ('walk_to_dest', 'd1', 'c1'), ('walk_to_dest', 'd2', 'c1')]
+depth 15 action ('drive', 't1', 'c0')
+Entro en drive
+depth 15 new state:
+    state1.at_paquete = {'p2': 'c0', 'p1': 'c2'}
+    state1.at_cond = {'d2': 't1', 'd1': 'c2'}
+    state1.ruta_cond = {'pi_01': ['c0', 'c1'], 'pi_12': ['c1', 'c2'], 'c1': ['pi_01', 'pi_12'], 'c0': ['pi_01'], 'c2': ['pi_12']}
+    state1.carga_camion = {'t2': [], 't1': []}
+    state1.ruta_cam = {'c2': ['c0', 'c1'], 'c1': ['c0', 'c2'], 'c0': ['c1', 'c2']}
+    state1.distancias = {'pi_01': {'pi_12': 2, 'c2': 3, 'c1': 1, 'c0': 1}, 'pi_12': {'c2': 1, 'p_01': 2, 'c0': 3, 'c1': 1}, 'c1': {'pi_01': 1, 'pi_12': 1, 'c0': 2, 'c2': 2}, 'c0': {'pi_01': 1, 'pi_12': 3, 'c1': 2, 'c2': 4}, 'c2': {'pi_01': 3, 'pi_12': 1, 'c1': 2, 'c0': 4}}
+    state1.at_camiones = {'t2': 'c2', 't1': 'c0'}
+depth 16 tasks [('bajar_camion', 't1', 'd2'), ('pack_to_dest', 'p2', 'c1'), ('drive_to_dest', 't2', 'c2'), ('drive_to_dest', 't1', 'c1'), ('walk_to_dest', 'd1', 'c1'), ('walk_to_dest', 'd2', 'c1')]
+depth 16 action ('bajar_camion', 't1', 'd2')
+Entro en bajar_camion
+depth 16 new state:
+    state1.at_paquete = {'p2': 'c0', 'p1': 'c2'}
+    state1.at_cond = {'d2': 'c0', 'd1': 'c2'}
+    state1.ruta_cond = {'pi_01': ['c0', 'c1'], 'pi_12': ['c1', 'c2'], 'c1': ['pi_01', 'pi_12'], 'c0': ['pi_01'], 'c2': ['pi_12']}
+    state1.carga_camion = {'t2': [], 't1': []}
+    state1.ruta_cam = {'c2': ['c0', 'c1'], 'c1': ['c0', 'c2'], 'c0': ['c1', 'c2']}
+    state1.distancias = {'pi_01': {'pi_12': 2, 'c2': 3, 'c1': 1, 'c0': 1}, 'pi_12': {'c2': 1, 'p_01': 2, 'c0': 3, 'c1': 1}, 'c1': {'pi_01': 1, 'pi_12': 1, 'c0': 2, 'c2': 2}, 'c0': {'pi_01': 1, 'pi_12': 3, 'c1': 2, 'c2': 4}, 'c2': {'pi_01': 3, 'pi_12': 1, 'c1': 2, 'c0': 4}}
+    state1.at_camiones = {'t2': 'c2', 't1': 'c0'}
+depth 17 tasks [('pack_to_dest', 'p2', 'c1'), ('drive_to_dest', 't2', 'c2'), ('drive_to_dest', 't1', 'c1'), ('walk_to_dest', 'd1', 'c1'), ('walk_to_dest', 'd2', 'c1')]
+depth 17 method instance ('pack_to_dest', 'p2', 'c1')
+depth 17 new tasks: [('carga', 't1', 'p2'), ('drive_to_dest', 't1', 'c1'), ('descarga', 't1', 'p2')]
+depth 18 tasks [('carga', 't1', 'p2'), ('drive_to_dest', 't1', 'c1'), ('descarga', 't1', 'p2'), ('drive_to_dest', 't2', 'c2'), ('drive_to_dest', 't1', 'c1'), ('walk_to_dest', 'd1', 'c1'), ('walk_to_dest', 'd2', 'c1')]
+depth 18 action ('carga', 't1', 'p2')
+Entro en carga
+depth 18 new state:
+    state1.at_paquete = {'p2': 't1', 'p1': 'c2'}
+    state1.at_cond = {'d2': 'c0', 'd1': 'c2'}
+    state1.ruta_cond = {'pi_01': ['c0', 'c1'], 'pi_12': ['c1', 'c2'], 'c1': ['pi_01', 'pi_12'], 'c0': ['pi_01'], 'c2': ['pi_12']}
+    state1.carga_camion = {'t2': [], 't1': ['p2']}
+    state1.ruta_cam = {'c2': ['c0', 'c1'], 'c1': ['c0', 'c2'], 'c0': ['c1', 'c2']}
+    state1.distancias = {'pi_01': {'pi_12': 2, 'c2': 3, 'c1': 1, 'c0': 1}, 'pi_12': {'c2': 1, 'p_01': 2, 'c0': 3, 'c1': 1}, 'c1': {'pi_01': 1, 'pi_12': 1, 'c0': 2, 'c2': 2}, 'c0': {'pi_01': 1, 'pi_12': 3, 'c1': 2, 'c2': 4}, 'c2': {'pi_01': 3, 'pi_12': 1, 'c1': 2, 'c0': 4}}
+    state1.at_camiones = {'t2': 'c2', 't1': 'c0'}
+depth 19 tasks [('drive_to_dest', 't1', 'c1'), ('descarga', 't1', 'p2'), ('drive_to_dest', 't2', 'c2'), ('drive_to_dest', 't1', 'c1'), ('walk_to_dest', 'd1', 'c1'), ('walk_to_dest', 'd2', 'c1')]
+depth 19 method instance ('drive_to_dest', 't1', 'c1')
+depth 19 new tasks: [('subir_camion', 't1', 'd2'), ('drive', 't1', 'c1'), ('bajar_camion', 't1', 'd2')]
+depth 20 tasks [('subir_camion', 't1', 'd2'), ('drive', 't1', 'c1'), ('bajar_camion', 't1', 'd2'), ('descarga', 't1', 'p2'), ('drive_to_dest', 't2', 'c2'), ('drive_to_dest', 't1', 'c1'), ('walk_to_dest', 'd1', 'c1'), ('walk_to_dest', 'd2', 'c1')]
+depth 20 action ('subir_camion', 't1', 'd2')
+Entro en subir_camion
+depth 20 new state:
+    state1.at_paquete = {'p2': 't1', 'p1': 'c2'}
+    state1.at_cond = {'d2': 't1', 'd1': 'c2'}
+    state1.ruta_cond = {'pi_01': ['c0', 'c1'], 'pi_12': ['c1', 'c2'], 'c1': ['pi_01', 'pi_12'], 'c0': ['pi_01'], 'c2': ['pi_12']}
+    state1.carga_camion = {'t2': [], 't1': ['p2']}
+    state1.ruta_cam = {'c2': ['c0', 'c1'], 'c1': ['c0', 'c2'], 'c0': ['c1', 'c2']}
+    state1.distancias = {'pi_01': {'pi_12': 2, 'c2': 3, 'c1': 1, 'c0': 1}, 'pi_12': {'c2': 1, 'p_01': 2, 'c0': 3, 'c1': 1}, 'c1': {'pi_01': 1, 'pi_12': 1, 'c0': 2, 'c2': 2}, 'c0': {'pi_01': 1, 'pi_12': 3, 'c1': 2, 'c2': 4}, 'c2': {'pi_01': 3, 'pi_12': 1, 'c1': 2, 'c0': 4}}
+    state1.at_camiones = {'t2': 'c2', 't1': 'c0'}
+depth 21 tasks [('drive', 't1', 'c1'), ('bajar_camion', 't1', 'd2'), ('descarga', 't1', 'p2'), ('drive_to_dest', 't2', 'c2'), ('drive_to_dest', 't1', 'c1'), ('walk_to_dest', 'd1', 'c1'), ('walk_to_dest', 'd2', 'c1')]
+depth 21 action ('drive', 't1', 'c1')
+Entro en drive
+depth 21 new state:
+    state1.at_paquete = {'p2': 't1', 'p1': 'c2'}
+    state1.at_cond = {'d2': 't1', 'd1': 'c2'}
+    state1.ruta_cond = {'pi_01': ['c0', 'c1'], 'pi_12': ['c1', 'c2'], 'c1': ['pi_01', 'pi_12'], 'c0': ['pi_01'], 'c2': ['pi_12']}
+    state1.carga_camion = {'t2': [], 't1': ['p2']}
+    state1.ruta_cam = {'c2': ['c0', 'c1'], 'c1': ['c0', 'c2'], 'c0': ['c1', 'c2']}
+    state1.distancias = {'pi_01': {'pi_12': 2, 'c2': 3, 'c1': 1, 'c0': 1}, 'pi_12': {'c2': 1, 'p_01': 2, 'c0': 3, 'c1': 1}, 'c1': {'pi_01': 1, 'pi_12': 1, 'c0': 2, 'c2': 2}, 'c0': {'pi_01': 1, 'pi_12': 3, 'c1': 2, 'c2': 4}, 'c2': {'pi_01': 3, 'pi_12': 1, 'c1': 2, 'c0': 4}}
+    state1.at_camiones = {'t2': 'c2', 't1': 'c1'}
+depth 22 tasks [('bajar_camion', 't1', 'd2'), ('descarga', 't1', 'p2'), ('drive_to_dest', 't2', 'c2'), ('drive_to_dest', 't1', 'c1'), ('walk_to_dest', 'd1', 'c1'), ('walk_to_dest', 'd2', 'c1')]
+depth 22 action ('bajar_camion', 't1', 'd2')
+Entro en bajar_camion
+depth 22 new state:
+    state1.at_paquete = {'p2': 't1', 'p1': 'c2'}
+    state1.at_cond = {'d2': 'c1', 'd1': 'c2'}
+    state1.ruta_cond = {'pi_01': ['c0', 'c1'], 'pi_12': ['c1', 'c2'], 'c1': ['pi_01', 'pi_12'], 'c0': ['pi_01'], 'c2': ['pi_12']}
+    state1.carga_camion = {'t2': [], 't1': ['p2']}
+    state1.ruta_cam = {'c2': ['c0', 'c1'], 'c1': ['c0', 'c2'], 'c0': ['c1', 'c2']}
+    state1.distancias = {'pi_01': {'pi_12': 2, 'c2': 3, 'c1': 1, 'c0': 1}, 'pi_12': {'c2': 1, 'p_01': 2, 'c0': 3, 'c1': 1}, 'c1': {'pi_01': 1, 'pi_12': 1, 'c0': 2, 'c2': 2}, 'c0': {'pi_01': 1, 'pi_12': 3, 'c1': 2, 'c2': 4}, 'c2': {'pi_01': 3, 'pi_12': 1, 'c1': 2, 'c0': 4}}
+    state1.at_camiones = {'t2': 'c2', 't1': 'c1'}
+depth 23 tasks [('descarga', 't1', 'p2'), ('drive_to_dest', 't2', 'c2'), ('drive_to_dest', 't1', 'c1'), ('walk_to_dest', 'd1', 'c1'), ('walk_to_dest', 'd2', 'c1')]
+depth 23 action ('descarga', 't1', 'p2')
+Entro en descarga
+depth 23 new state:
+    state1.at_paquete = {'p2': 'c1', 'p1': 'c2'}
+    state1.at_cond = {'d2': 'c1', 'd1': 'c2'}
+    state1.ruta_cond = {'pi_01': ['c0', 'c1'], 'pi_12': ['c1', 'c2'], 'c1': ['pi_01', 'pi_12'], 'c0': ['pi_01'], 'c2': ['pi_12']}
+    state1.carga_camion = {'t2': [], 't1': []}
+    state1.ruta_cam = {'c2': ['c0', 'c1'], 'c1': ['c0', 'c2'], 'c0': ['c1', 'c2']}
+    state1.distancias = {'pi_01': {'pi_12': 2, 'c2': 3, 'c1': 1, 'c0': 1}, 'pi_12': {'c2': 1, 'p_01': 2, 'c0': 3, 'c1': 1}, 'c1': {'pi_01': 1, 'pi_12': 1, 'c0': 2, 'c2': 2}, 'c0': {'pi_01': 1, 'pi_12': 3, 'c1': 2, 'c2': 4}, 'c2': {'pi_01': 3, 'pi_12': 1, 'c1': 2, 'c0': 4}}
+    state1.at_camiones = {'t2': 'c2', 't1': 'c1'}
+depth 24 tasks [('drive_to_dest', 't2', 'c2'), ('drive_to_dest', 't1', 'c1'), ('walk_to_dest', 'd1', 'c1'), ('walk_to_dest', 'd2', 'c1')]
+depth 24 method instance ('drive_to_dest', 't2', 'c2')
+depth 24 new tasks: [('already_there',)]
+depth 25 tasks [('already_there',), ('drive_to_dest', 't1', 'c1'), ('walk_to_dest', 'd1', 'c1'), ('walk_to_dest', 'd2', 'c1')]
+depth 25 action ('already_there',)
+Entro en already_there
+depth 25 new state:
+    state1.at_paquete = {'p2': 'c1', 'p1': 'c2'}
+    state1.at_cond = {'d2': 'c1', 'd1': 'c2'}
+    state1.ruta_cond = {'pi_01': ['c0', 'c1'], 'pi_12': ['c1', 'c2'], 'c1': ['pi_01', 'pi_12'], 'c0': ['pi_01'], 'c2': ['pi_12']}
+    state1.carga_camion = {'t2': [], 't1': []}
+    state1.ruta_cam = {'c2': ['c0', 'c1'], 'c1': ['c0', 'c2'], 'c0': ['c1', 'c2']}
+    state1.distancias = {'pi_01': {'pi_12': 2, 'c2': 3, 'c1': 1, 'c0': 1}, 'pi_12': {'c2': 1, 'p_01': 2, 'c0': 3, 'c1': 1}, 'c1': {'pi_01': 1, 'pi_12': 1, 'c0': 2, 'c2': 2}, 'c0': {'pi_01': 1, 'pi_12': 3, 'c1': 2, 'c2': 4}, 'c2': {'pi_01': 3, 'pi_12': 1, 'c1': 2, 'c0': 4}}
+    state1.at_camiones = {'t2': 'c2', 't1': 'c1'}
+depth 26 tasks [('drive_to_dest', 't1', 'c1'), ('walk_to_dest', 'd1', 'c1'), ('walk_to_dest', 'd2', 'c1')]
+depth 26 method instance ('drive_to_dest', 't1', 'c1')
+depth 26 new tasks: [('already_there',)]
+depth 27 tasks [('already_there',), ('walk_to_dest', 'd1', 'c1'), ('walk_to_dest', 'd2', 'c1')]
+depth 27 action ('already_there',)
+Entro en already_there
+depth 27 new state:
+    state1.at_paquete = {'p2': 'c1', 'p1': 'c2'}
+    state1.at_cond = {'d2': 'c1', 'd1': 'c2'}
+    state1.ruta_cond = {'pi_01': ['c0', 'c1'], 'pi_12': ['c1', 'c2'], 'c1': ['pi_01', 'pi_12'], 'c0': ['pi_01'], 'c2': ['pi_12']}
+    state1.carga_camion = {'t2': [], 't1': []}
+    state1.ruta_cam = {'c2': ['c0', 'c1'], 'c1': ['c0', 'c2'], 'c0': ['c1', 'c2']}
+    state1.distancias = {'pi_01': {'pi_12': 2, 'c2': 3, 'c1': 1, 'c0': 1}, 'pi_12': {'c2': 1, 'p_01': 2, 'c0': 3, 'c1': 1}, 'c1': {'pi_01': 1, 'pi_12': 1, 'c0': 2, 'c2': 2}, 'c0': {'pi_01': 1, 'pi_12': 3, 'c1': 2, 'c2': 4}, 'c2': {'pi_01': 3, 'pi_12': 1, 'c1': 2, 'c0': 4}}
+    state1.at_camiones = {'t2': 'c2', 't1': 'c1'}
+depth 28 tasks [('walk_to_dest', 'd1', 'c1'), ('walk_to_dest', 'd2', 'c1')]
+depth 28 method instance ('walk_to_dest', 'd1', 'c1')
+depth 28 new tasks: [('walk', 'd1', 'pi_12'), ('walk_to_dest', 'd1', 'c1')]
+depth 29 tasks [('walk', 'd1', 'pi_12'), ('walk_to_dest', 'd1', 'c1'), ('walk_to_dest', 'd2', 'c1')]
+depth 29 action ('walk', 'd1', 'pi_12')
+Entro en walk
+d1
+c2
+depth 29 new state:
+    state1.at_paquete = {'p2': 'c1', 'p1': 'c2'}
+    state1.at_cond = {'d2': 'c1', 'd1': 'pi_12'}
+    state1.ruta_cond = {'pi_01': ['c0', 'c1'], 'pi_12': ['c1', 'c2'], 'c1': ['pi_01', 'pi_12'], 'c0': ['pi_01'], 'c2': ['pi_12']}
+    state1.carga_camion = {'t2': [], 't1': []}
+    state1.ruta_cam = {'c2': ['c0', 'c1'], 'c1': ['c0', 'c2'], 'c0': ['c1', 'c2']}
+    state1.distancias = {'pi_01': {'pi_12': 2, 'c2': 3, 'c1': 1, 'c0': 1}, 'pi_12': {'c2': 1, 'p_01': 2, 'c0': 3, 'c1': 1}, 'c1': {'pi_01': 1, 'pi_12': 1, 'c0': 2, 'c2': 2}, 'c0': {'pi_01': 1, 'pi_12': 3, 'c1': 2, 'c2': 4}, 'c2': {'pi_01': 3, 'pi_12': 1, 'c1': 2, 'c0': 4}}
+    state1.at_camiones = {'t2': 'c2', 't1': 'c1'}
+depth 30 tasks [('walk_to_dest', 'd1', 'c1'), ('walk_to_dest', 'd2', 'c1')]
+depth 30 method instance ('walk_to_dest', 'd1', 'c1')
+depth 30 new tasks: [('walk', 'd1', 'c1')]
+depth 31 tasks [('walk', 'd1', 'c1'), ('walk_to_dest', 'd2', 'c1')]
+depth 31 action ('walk', 'd1', 'c1')
+Entro en walk
+d1
+pi_12
+depth 31 new state:
+    state1.at_paquete = {'p2': 'c1', 'p1': 'c2'}
+    state1.at_cond = {'d2': 'c1', 'd1': 'c1'}
+    state1.ruta_cond = {'pi_01': ['c0', 'c1'], 'pi_12': ['c1', 'c2'], 'c1': ['pi_01', 'pi_12'], 'c0': ['pi_01'], 'c2': ['pi_12']}
+    state1.carga_camion = {'t2': [], 't1': []}
+    state1.ruta_cam = {'c2': ['c0', 'c1'], 'c1': ['c0', 'c2'], 'c0': ['c1', 'c2']}
+    state1.distancias = {'pi_01': {'pi_12': 2, 'c2': 3, 'c1': 1, 'c0': 1}, 'pi_12': {'c2': 1, 'p_01': 2, 'c0': 3, 'c1': 1}, 'c1': {'pi_01': 1, 'pi_12': 1, 'c0': 2, 'c2': 2}, 'c0': {'pi_01': 1, 'pi_12': 3, 'c1': 2, 'c2': 4}, 'c2': {'pi_01': 3, 'pi_12': 1, 'c1': 2, 'c0': 4}}
+    state1.at_camiones = {'t2': 'c2', 't1': 'c1'}
+depth 32 tasks [('walk_to_dest', 'd2', 'c1')]
+depth 32 method instance ('walk_to_dest', 'd2', 'c1')
+depth 32 new tasks: [('already_there',)]
+depth 33 tasks [('already_there',)]
+depth 33 action ('already_there',)
+Entro en already_there
+depth 33 new state:
+    state1.at_paquete = {'p2': 'c1', 'p1': 'c2'}
+    state1.at_cond = {'d2': 'c1', 'd1': 'c1'}
+    state1.ruta_cond = {'pi_01': ['c0', 'c1'], 'pi_12': ['c1', 'c2'], 'c1': ['pi_01', 'pi_12'], 'c0': ['pi_01'], 'c2': ['pi_12']}
+    state1.carga_camion = {'t2': [], 't1': []}
+    state1.ruta_cam = {'c2': ['c0', 'c1'], 'c1': ['c0', 'c2'], 'c0': ['c1', 'c2']}
+    state1.distancias = {'pi_01': {'pi_12': 2, 'c2': 3, 'c1': 1, 'c0': 1}, 'pi_12': {'c2': 1, 'p_01': 2, 'c0': 3, 'c1': 1}, 'c1': {'pi_01': 1, 'pi_12': 1, 'c0': 2, 'c2': 2}, 'c0': {'pi_01': 1, 'pi_12': 3, 'c1': 2, 'c2': 4}, 'c2': {'pi_01': 3, 'pi_12': 1, 'c1': 2, 'c0': 4}}
+    state1.at_camiones = {'t2': 'c2', 't1': 'c1'}
+depth 34 tasks []
+depth 34 returns plan [('carga', 't2', 'p1'), ('walk', 'd1', 'c0'), ('subir_camion', 't2', 'd1'), ('drive', 't2', 'c2'), ('bajar_camion', 't2', 'd1'), ('descarga', 't2', 'p1'), ('subir_camion', 't1', 'd2'), ('drive', 't1', 'c0'), ('bajar_camion', 't1', 'd2'), ('carga', 't1', 'p2'), ('subir_camion', 't1', 'd2'), ('drive', 't1', 'c1'), ('bajar_camion', 't1', 'd2'), ('descarga', 't1', 'p2'), ('already_there',), ('already_there',), ('walk', 'd1', 'pi_12'), ('walk', 'd1', 'c1'), ('already_there',)]
+** result = [('carga', 't2', 'p1'), ('walk', 'd1', 'c0'), ('subir_camion', 't2', 'd1'), ('drive', 't2', 'c2'), ('bajar_camion', 't2', 'd1'), ('descarga', 't2', 'p1'), ('subir_camion', 't1', 'd2'), ('drive', 't1', 'c0'), ('bajar_camion', 't1', 'd2'), ('carga', 't1', 'p2'), ('subir_camion', 't1', 'd2'), ('drive', 't1', 'c1'), ('bajar_camion', 't1', 'd2'), ('descarga', 't1', 'p2'), ('already_there',), ('already_there',), ('walk', 'd1', 'pi_12'), ('walk', 'd1', 'c1'), ('already_there',)] 
+
